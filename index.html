@@ -1,128 +1,232 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Prado</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&display=swap"
-        rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portal TechNews</title>
+<style>
+  :root {
+    --cor-primaria: #b91c1c;
+    --cor-fundo: #fff;
+    --cor-texto: #111;
+    --cor-destaque-bg: #f9f9f9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.7;
+    animation: fadeIn 1s ease-in;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+  header {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+    text-align: center;
+  }
+  header .logo { font-size: 2.5rem; font-weight: bold; font-family: 'Times New Roman', serif; }
+  nav { margin-top: 15px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  nav a { color: var(--cor-texto); text-decoration: none; transition: color 0.3s; }
+  nav a:hover { color: var(--cor-primaria); }
+
+  .banner { margin: 25px auto; max-width: 1000px; position: relative; overflow: hidden; border-radius: 10px; }
+  .banner img { width: 100%; transition: transform 5s ease; }
+  .banner:hover img { transform: scale(1.05); }
+  .banner .caption { position: absolute; bottom: 15px; left: 15px; background: rgba(255,255,255,0.9); padding: 10px 15px; font-weight: bold; border-radius: 5px; }
+
+  main { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+  .destaques { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+  .card {
+    background: var(--cor-destaque-bg);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+  .card img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #ddd; }
+  .info { padding: 12px 15px; }
+  .card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .card p { font-size: 0.95rem; margin-bottom: 12px; }
+  .card button {
+    background: var(--cor-primaria); color: #fff;
+    border: none; padding: 8px 12px; border-radius: 5px;
+    cursor: pointer; transition: background 0.3s, transform 0.2s;
+  }
+  .card button:hover { background: #7f1d1d; transform: scale(1.05); }
+
+  aside .widget { margin-bottom: 30px; }
+  aside .widget h4 { border-bottom: 2px solid var(--cor-primaria); margin-bottom: 12px; }
+  aside .widget ul { list-style: none; }
+  aside .widget ul li { margin-bottom: 10px; }
+  aside .widget ul li a { text-decoration: none; color: var(--cor-texto); }
+  aside .widget ul li a:hover { color: var(--cor-primaria); text-decoration: underline; }
+
+  footer { border-top: 1px solid #ddd; text-align: center; padding: 20px 15px; margin-top: 50px; font-size: 0.9rem; }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    position: relative;
+    animation: slideDown 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal-content h3 { margin-bottom: 15px; }
+  .modal-content p { margin-bottom: 12px; }
+  .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+  @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } .destaques { grid-template-columns: 1fr; } }
+</style>
 </head>
-
 <body>
-    <nav class="navegacao">
-        <ul class="menu">
-            <li>
-                <a href="#inicio" class="menu-link">Início</a>
-            </li>
 
-            <li>
-                <a href="#contatos" class="menu-link">Contato</a>
-            </li>
+<header>
+  <div class="logo">TechNews</div>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Política</a>
+    <a href="#">Internacional</a>
+    <a href="#">Tecnologia</a>
+    <a href="#">Economia</a>
+    <a href="#">Esportes</a>
+    <a href="#">Saúde</a>
+  </nav>
+</header>
 
-            <li>
-                <a href="#projetos" class="menu-link">Projetos</a>
-            </li>
+<section class="banner">
+  <div class="banner-content">
+    <img src="chat.webp" alt="">
+    <h1>ChatGPT agora permite controle parental</h1>
+    <p>A OpenAI lançou controles parentais no ChatGPT, permitindo que pais e responsáveis vinculem suas contas às de adolescentes para gerenciar o uso da IA e receber alertas sobre conversas problemáticas.</p>
+    <ul>
+      <li>Definir horários de uso</li>
+      <li>Bloquear imagens e desativar voz</li>
+      <li>Controlar memória e restrição do uso das conversas para treinamento</li>
+      <li>Alertas por e-mail, SMS ou app sobre conversas sensíveis</li>
+    </ul>
+    <p>O recurso já está disponível para todos os usuários, aumentando a segurança e bem-estar dos adolescentes.</p>
+  </div>
+</section>
 
-            <li>
-                <a href="#sobre" class="menu-link">Sobre</a>
+<main>
+  <div class="destaques">
+    <div class="card">
+      <img src="nvidia.jpg" alt="Notícia 1">
+      <div class="info">
+        <h3>A Nvidia anunciou um investimento de até US$ 100 bilhões na OpenAI para acelerar a infraestrutura de inteligência artificial avançada. O plano inclui:</h3>
+        <p>Fornecimento em larga escala de chips de datacenter para treinar e executar grandes modelos de IA.
 
-            </li>
+Investimento minoritário direto na OpenAI, sem controle acionário.
 
-        </ul>
+Resultados esperados a partir do final de 2026.</p>
+        <button onclick="abrirModal('O movimento reforça a competição global em IA generativa, envolvendo Google, Meta, Microsoft e startups, e fortalece a posição da OpenAI.Impactos principais:Dependência da indústria de IA nos chips de alto desempenho da Nvidia.Concentração de poder em poucas empresas-chave do setor.Fortalecimento de alianças entre desenvolvedores de IA e fornecedores de hardware.', 'Nvidia')">Ver mais</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="tiktok.avif" alt="Notícia 2">
+      <div class="info">
+        <h3>TikTok nos EUA: entenda os planos de Trump para controlar o aplicativo chinês</h3>
+        <p>O presidente Donald Trump assinou uma ordem executiva para transferir o controle do TikTok nos EUA a investidores americanos, permitindo que o aplicativo continue ativo de forma “segura”.</p>
+        <button onclick="abrirModal('Acordo: investidores liderados por Larry Ellison (Oracle) e Rupert Murdoch compram 80% das operações, enquanto a ByteDance mantém menos de 20%.Motivo: preocupações de segurança nacional e proteção de dados americanos contra possível influência chinesa.Impacto: usuários americanos poderão continuar usando o TikTok, com dados protegidos e controle total sobre o algoritmo.Prazo: transação deve ser concluída em até 23 de janeiro de 2026.O acordo inclui empresas como Silver Lake Management e Andreessen Horowitz e cria um modelo nacional do algoritmo para maior segurança e autonomia americana.', 'Trump X TikTok')">Ver mais</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="ea.avif" alt="Notícia 3">
+      <div class="info">
+        <h3>Electronic Arts, dona de 'The Sims' e 'Battlefield', aprova sua venda por US$ 55 bilhões em acordo histórico</h3>
+        <p>A Electronic Arts (EA) anunciou um acordo de US$ 55 bilhões para fechar seu capital, em uma das maiores aquisições do setor de games.</p>
+        <button onclick="abrirModal('Compradores: consórcio formado por Silver Lake, Fundo de Investimento Público da Arábia Saudita (PIF) e Affinity Partners.Detalhes: os acionistas receberão US$ 210 por ação (25% acima do preço de mercado) e a transação deve ser concluída no primeiro trimestre do ano fiscal de 2027.Motivo: reforçar o portfólio de franquias populares como Battlefield e The Sims, e o PIF busca diversificar investimentos em setores como jogos, esportes e turismo.', 'EA Battlefield e The Sims')">Ver mais</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="microsoft.webp" alt="Notícia 4">
+      <div class="info">
+        <h3>Microsoft desativa serviços usados por Israel após uso para vigilância em Gaza e na Cisjordânia</h3>
+        <p>Empresa disse que encontrou evidências após analisar documentos internos e padrões de uso do Ministério da Defesa de Israel e alegou que seus princípios impedem uso da tecnologia para facilitar a vigilância sobre civis.A Microsoft informou nesta quinta-feira (25) que desativou um conjunto de serviços de computação em nuvem e de inteligência artificial usados por uma unidade do Ministério da Defesa de Israel (IMOD).</p>
+        <button onclick="abrirModal('A medida foi tomada após o jornal The Guardian apontar no início de agosto que as Forças de Defesa de Israel estavam usando o sistema Azure, da Microsoft, para armazenar arquivos de chamadas telefônicas obtidas por meio de vigilância ampla ou em massa de civis em Gaza e na Cisjordânia a Microsoft disse que fez uma revisão com base em demonstrações financeiras, documentos internos, comunicações por e-mail e mensagens, entre outros registros. A análise não levou em conta dados privados da conta do Ministério de Defesa de Israel. A empresa disse que a revisão ainda está em andamento, mas já encontrou evidências que apoiam as alegações da reportagem do Guardian, incluindo detalhes sobre o uso do armazenamento do Azure na Holanda e de serviços de IA pela unidade do ministério israelense. A Microsoft não é um governo nem um país. Somos uma empresa. Como toda empresa, decidimos quais produtos e serviços oferecer aos nossos clientes disse Brad Smith, presidente da Microsoft.Não fornecemos tecnologia para facilitar a vigilância em massa de civis. Aplicamos esse princípio em todos os países do mundo e insistimos nele repetidamente por mais de duas décadas Ainda segundo o comunicado, a Microsoft informou o Ministério de Defesa de Israel sobre a decisão de interromper parte das assinaturas e serviços do órgão. A empresa disse que a medida não vai impactar sua atuação no Oriente Médio. Avanços médicos trazem novas esperanças')">Ver mais</button>
+      </div>
+    </div>
+  </div>
 
+  <aside>
+    <div class="widget">
+      <h4>Mais Lidas</h4>
+      <ul>
+        <li><a href="#">A Nvidia anunciou um investimento de até US$ 100 bilhões</a></li>
+        <li><a href="#">TikTok nos EUA</a></li>
+        <li><a href="#">Electronic Arts, dona de 'The Sims' e 'Battlefield', aprova sua venda por US$ 55 bilhões</a></li>
+        <li><a href="#">Microsoft desativa serviços usados por Israel</a></li>
+        <li><a href="#">Matéria mais lida 3</a></li>
+      </ul>
+    </div>
+    <div class="widget">
+      <h4>Editorias</h4>
+      <ul>
+        <li><a href="#">Política</a></li>
+        <li><a href="#">Tecnologia</a></li>
+        <li><a href="#">Economia</a></li>
+        <li><a href="#">Saúde</a></li>
+      </ul>
+    </div>
+  </aside>
+</main>
 
-    </nav>
+<footer>
+  &copy; 2025 TechNews – Inspirado no estilo editorial do The New York Times
+</footer>
 
-    <main id="inicio" class="cabecalho">
-
-        <img src="img_site/foto-profissional.jpg" alt="" srcset="" alt="Foto de Luiz Henrique" class="foto-perfil">
-        <h1>Luiz Henrique</h1>
-        <p class="sub-titulo">&#60Programador Front-End&#62</p>
-
-    </main>
-
-    <section id="sobre" class="sobre">
-        <h2 class="sobre-titulo">Sobre Mim</h2>
-        <div class="sobre-caixa">
-            <p class="sobre-paragrafo">
-                Olá! Me chamo Luiz Henrique, tenho 17 anos, moro em Gravataí-RS e atualmente estou no terceiro ano do
-                ensino médio. Meus principais hobbies são escutar musica e treinar na academia. Sou desenvolvedor
-                Front-End e meu sonho é crescer profissionalmente na área da programação. Sou apaixonado por aprender
-                coisas novas e desenvolver minhas habilidades.
-
-
-            </p>
-        </div>
-    </section>
-
-    <section id="projetos" class="prejetos">
-        <h2 class="projetos-titulo">Meus Projetos</h2>
-        <div class="projetos-caixa">
-            <div class="projetos-card">
-                <img class="projetos-imagem" src="img_site/Screenshot 2025-09-30 16.29.33.png" alt="" srcset="">
-                <div class="caixas-texto-projetos">
-                    <h3 class="info-projetos">TechNews</h3>
-                    <p class="paragrafo-projetos">O projeto TechNews consiste em um site de notícias voltado para
-                        tecnologia, inspirado na estrutura e no estilo jornalístico do The New York Times.
-                        A plataforma busca oferecer conteúdo atualizado, confiável e de fácil leitura, com seções
-                        dedicadas a inovações, gadgets, ciência e análises de mercado. Além de priorizar a experiência
-                        do usuário,
-                        o site aposta em um design moderno e responsivo, que integra imagens, vídeos e artigos de forma
-                        organizada, garantindo que leitores encontrem rapidamente as informações mais relevantes do
-                        universo tecnológico.</p>
-                </div>
-            </div>
-
-            <div class="projetos-card">
-                <img class="projetos-imagem" src="img_site/Screenshot_21.png" alt="" srcset="">
-                <div class="caixas-texto-projetos">
-                    <h3 class="info-projetos">Prado Portfólio</h3>
-                    <p class="paragrafo-projetos">O Prado Portfolio é um portfólio digital moderno que reúne projetos e soluções tecnológicas desenvolvidas com foco em inovação e praticidade. Um dos principais diferenciais é a automação com WhatsApp, que possibilita uma comunicação ágil e direta com clientes ou visitantes, oferecendo respostas rápidas.</p>
-                </div>
-            </div>
-
-    </section>
-
-    <section id="contatos" class="contato">
-        <h2 class="contatos-titulo">Entre em Contato</h2>
-        <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
-            <div class="nome-form">
-                <input placeholder="Nome" class="campo-form" id="nome">
-            </div>
-            <div class="grupo-form">
-                <textarea rows="8" id="mensagem" placeholder="Digite sua Mensagem" class="campo-form"></textarea>
-            </div>
-            <button type="submit" class="botao-form">Enviar Whatsapp</button>
-        </form>
-    </section>
-
-</body>
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <h3 id="modal-title"></h3>
+    <p id="modal-text"></p>
+  </div>
+</div>
 
 <script>
-
-    function enviarWhats(event) {
-        event.preventDefault()
-        const nome = document.getElementById('nome').value;
-        const mensagem = document.getElementById('mensagem').value;
-        const telefone = '5551984599307'
-
-        const texto = `Olá! Me chamo ${nome}, ${mensagem}`
-        const msgformatada = encodeURIComponent(texto)
-
-        const url = `https://wa.me/${telefone}?text=${msgformatada}`
-
-        window.open(url, '_blank')
-
-    }
-
-
-
+function abrirModal(texto, titulo) {
+  document.getElementById('modal-title').innerText = titulo;
+  document.getElementById('modal-text').innerText = texto;
+  document.getElementById('modal').style.display = 'flex';
+}
+function fecharModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+// Fechar modal ao clicar fora da área do conteúdo
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  if (event.target === modal) modal.style.display = "none";
+}
 </script>
 
+</body>
 </html>
