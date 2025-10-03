@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Prado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navegacao">
+        <ul class="menu">
+            <li>
+                <a href="#inicio" class="menu-link">Início</a>
+            </li>
+
+            <li>
+                <a href="#contatos" class="menu-link">Contato</a>
+            </li>
+
+            <li>
+                <a href="#projetos" class="menu-link">Projetos</a>
+            </li>
+
+            <li>
+                <a href="#sobre" class="menu-link">Sobre</a>
+
+            </li>
+
+        </ul>
+
+
+    </nav>
+
+    <main id="inicio" class="cabecalho">
+
+        <img src="img_site/foto-profissional.jpg" alt="" srcset="" alt="Foto de Luiz Henrique" class="foto-perfil">
+        <h1>Luiz Henrique</h1>
+        <p class="sub-titulo">&#60Programador Front-End&#62</p>
+
+    </main>
+
+    <section id="sobre" class="sobre">
+        <h2 class="sobre-titulo">Sobre Mim</h2>
+        <div class="sobre-caixa">
+            <p class="sobre-paragrafo">
+                Olá! Me chamo Luiz Henrique, tenho 17 anos, moro em Gravataí-RS e atualmente estou no terceiro ano do
+                ensino médio. Meus principais hobbies são escutar musica e treinar na academia. Sou desenvolvedor
+                Front-End e meu sonho é crescer profissionalmente na área da programação. Sou apaixonado por aprender
+                coisas novas e desenvolver minhas habilidades.
+
+
+            </p>
+        </div>
+    </section>
+
+    <section id="projetos" class="prejetos">
+        <h2 class="projetos-titulo">Meus Projetos</h2>
+        <div class="projetos-caixa">
+            <div class="projetos-card">
+                <a href="https://lhcprado.github.io/technews/">
+                    <img class="projetos-imagem" src="img_site/Screenshot 2025-09-30 16.29.33.png" alt="" srcset="">
+                </a>
+                <div class="caixas-texto-projetos">
+                    <h3 class="info-projetos">TechNews</h3>
+                    <p class="paragrafo-projetos">O projeto TechNews consiste em um site de notícias voltado para
+                        tecnologia, inspirado na estrutura e no estilo jornalístico do The New York Times.
+                        A plataforma busca oferecer conteúdo atualizado, confiável e de fácil leitura, com seções
+                        dedicadas a inovações, gadgets, ciência e análises de mercado. Além de priorizar a experiência
+                        do usuário,
+                        o site aposta em um design moderno e responsivo, que integra imagens, vídeos e artigos de forma
+                        organizada, garantindo que leitores encontrem rapidamente as informações mais relevantes do
+                        universo tecnológico.</p>
+                </div>
+            </div>
+
+            <div class="projetos-card">
+                <img class="projetos-imagem" src="img_site/Screenshot_23.png" alt="" srcset="">
+                <div class="caixas-texto-projetos">
+                    <h3 class="info-projetos">Prado Portfólio</h3>
+                    <p class="paragrafo-projetos">O Prado Portfolio é um portfólio digital moderno que reúne projetos e
+                        soluções tecnológicas desenvolvidas com foco em inovação e praticidade. Um dos principais
+                        diferenciais é a automação com WhatsApp, que possibilita uma comunicação ágil e direta com
+                        clientes ou visitantes, oferecendo respostas rápidas.</p>
+                </div>
+            </div>
+
+    </section>
+
+    <section id="contatos" class="contato">
+        <h2 class="contatos-titulo">Entre em Contato</h2>
+        <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
+            <div class="nome-form">
+                <input placeholder="Nome" class="campo-form" id="nome">
+            </div>
+            <div class="grupo-form">
+                <textarea rows="8" id="mensagem" placeholder="Digite sua Mensagem" class="campo-form"></textarea>
+            </div>
+            <button type="submit" class="botao-form">Enviar Whatsapp</button>
+        </form>
+    </section>
+
+
+
+    <section class="caixa-links">
+        <div class="social-links">
+            <a href="https://github.com/lhcprado" class="link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                    class="social-link">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                </svg> </a>
+        </div>
+    </section>
+
+
+
+
+</body>
+
+<script>
+
+    function enviarWhats(event) {
+        event.preventDefault()
+        const nome = document.getElementById('nome').value;
+        const mensagem = document.getElementById('mensagem').value;
+        const telefone = '5551984599307'
+
+        const texto = `Olá! Me chamo ${nome}, ${mensagem}`
+        const msgformatada = encodeURIComponent(texto)
+
+        const url = `https://wa.me/${telefone}?text=${msgformatada}`
+
+        window.open(url, '_blank')
+
+    }
+
+
+
+</script>
+
+</html>
